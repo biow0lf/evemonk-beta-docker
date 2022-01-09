@@ -12,7 +12,7 @@ services:
     container_name: "evemonk_nginx"
     restart: "unless-stopped"
     volumes:
-      - "./nginx-evemonk.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./evemonk-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
 
   pghero_nginx:
     image: "docker.io/library/nginx:1.20.2"
