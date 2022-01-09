@@ -18,8 +18,8 @@ services:
     image: "docker.io/library/nginx:1.20.2"
     container_name: "evemonk_pghero_nginx"
     restart: "unless-stopped"
-#    volumes:
-#      - "./evemonk-pghero-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+    volumes:
+      - "./evemonk_pghero_nginx/default.conf:/etc/nginx/conf.d:ro"
 
   https_portal:
     image: "docker.io/steveltn/https-portal:1.21.0"
