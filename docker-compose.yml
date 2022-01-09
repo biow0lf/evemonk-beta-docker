@@ -36,9 +36,7 @@ services:
       WEBSOCKET: "true"
       LISTEN_IPV6: "true"
       DOMAINS: "beta.evemonk.com -> http://nginx,
-                pghero-beta.evemonk.com -> http://pghero_nginx,
-                pg-extras-beta.evemonk.com -> http://nginx,
-                username:password@sidekiq-beta.evemonk.com -> http://nginx"
+                pghero-beta.evemonk.com -> http://pghero_nginx"
 
   redis:
     image: "docker.io/library/redis:6.2.6"
