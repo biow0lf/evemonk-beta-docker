@@ -63,60 +63,60 @@ services:
       - "postresql14_data:/var/lib/postgresql/data:rw"
       - "./postgres:/docker-entrypoint-initdb.d:ro"
 
-  pghero:
-    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
-    container_name: "evemonk_pghero"
-    restart: "unless-stopped"
-    env_file: "./evemonk-pghero/.env"
-    read_only: true
+#  pghero:
+#    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
+#    container_name: "evemonk_pghero"
+#    restart: "unless-stopped"
+#    env_file: "./evemonk-pghero/.env"
+#    read_only: true
 
-  sidekiq-web-ui:
-    image: "docker.io/biow0lf/evemonk-sidekiq:v1.0.54"
-    container_name: "evemonk_sidekiq_web_ui"
-    restart: "unless-stopped"
-    env_file: "./evemonk-sidekiq-ui/.env"
-    read_only: true
+#  sidekiq-web-ui:
+#    image: "docker.io/biow0lf/evemonk-sidekiq:v1.0.54"
+#    container_name: "evemonk_sidekiq_web_ui"
+#    restart: "unless-stopped"
+#    env_file: "./evemonk-sidekiq-ui/.env"
+#    read_only: true
 
-  pg-extras:
-    image: "docker.io/biow0lf/evemonk-pg-extras:v1.0.7"
-    container_name: "evemonk_pg_extras"
-    restart: "unless-stopped"
-    env_file: "./evemonk-pg-extras/.env"
-    read_only: true
+#  pg-extras:
+#    image: "docker.io/biow0lf/evemonk-pg-extras:v1.0.7"
+#    container_name: "evemonk_pg_extras"
+#    restart: "unless-stopped"
+#    env_file: "./evemonk-pg-extras/.env"
+#    read_only: true
 
-  backend:
-    image: "docker.io/biow0lf/evemonk:v0.6.12"
-    container_name: "evemonk_backend"
-    restart: "unless-stopped"
-    #    read_only: true
-    env_file: ".env"
-    command: "./bin/backend"
-    volumes:
-      - "./evemonk/newrelic.yml:/app/config/newrelic.yml:ro"
-      - "/srv/static/sde-20211022:/app/static:ro"
+#  backend:
+#    image: "docker.io/biow0lf/evemonk:v0.6.12"
+#    container_name: "evemonk_backend"
+#    restart: "unless-stopped"
+#    #    read_only: true
+#    env_file: ".env"
+#    command: "./bin/backend"
+#    volumes:
+#      - "./evemonk/newrelic.yml:/app/config/newrelic.yml:ro"
+#      - "/srv/static/sde-20211022:/app/static:ro"
 
-  sidekiq:
-    image: "docker.io/biow0lf/evemonk:v0.6.12"
-    container_name: "evemonk_sidekiq"
-    restart: "unless-stopped"
-    #    read_only: true
-    env_file: ".env"
-    environment:
-      PORT: "5100"
-    ports:
-      - "5100:5100"
-    command: "./bin/sidekiq-server"
-    volumes:
-      - "./evemonk-sidekiq/newrelic.yml:/app/config/newrelic.yml:ro"
-      - "/srv/static/sde-20211022:/app/static:ro"
+#  sidekiq:
+#    image: "docker.io/biow0lf/evemonk:v0.6.12"
+#    container_name: "evemonk_sidekiq"
+#    restart: "unless-stopped"
+#    #    read_only: true
+#    env_file: ".env"
+#    environment:
+#      PORT: "5100"
+#    ports:
+#      - "5100:5100"
+#    command: "./bin/sidekiq-server"
+#    volumes:
+#      - "./evemonk-sidekiq/newrelic.yml:/app/config/newrelic.yml:ro"
+#      - "/srv/static/sde-20211022:/app/static:ro"
 
-  cron:
-    image: "docker.io/biow0lf/evemonk:v0.6.12"
-    container_name: "evemonk_cron"
-    restart: "unless-stopped"
-    #    read_only: true
-    env_file: ".env"
-    command: "./bin/cron"
-    volumes:
-      - "./evemonk-cron/newrelic.yml:/app/config/newrelic.yml:ro"
-      - "/srv/static/sde-20211022:/app/static:ro"
+#  cron:
+#    image: "docker.io/biow0lf/evemonk:v0.6.12"
+#    container_name: "evemonk_cron"
+#    restart: "unless-stopped"
+#    #    read_only: true
+#    env_file: ".env"
+#    command: "./bin/cron"
+#    volumes:
+#      - "./evemonk-cron/newrelic.yml:/app/config/newrelic.yml:ro"
+#      - "/srv/static/sde-20211022:/app/static:ro"
