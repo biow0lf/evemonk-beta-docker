@@ -7,7 +7,7 @@ volumes:
   https_logs: {}
 
 services:
-  nginx:
+  backend_nginx:
     image: "docker.io/library/nginx:1.20.2"
     container_name: "evemonk_nginx"
     restart: "unless-stopped"
@@ -35,7 +35,7 @@ services:
       STAGE: "production"
       WEBSOCKET: "true"
       LISTEN_IPV6: "true"
-      DOMAINS: "beta.evemonk.com -> http://nginx,
+      DOMAINS: "beta.evemonk.com -> http://backend_nginx,
                 pghero-beta.evemonk.com -> http://pghero_nginx"
 
   redis:
@@ -82,13 +82,13 @@ services:
 #    env_file: "./evemonk-pg-extras/.env"
 #    read_only: true
 
-#  backend:
-#    image: "docker.io/biow0lf/evemonk:v0.6.12"
-#    container_name: "evemonk_backend"
-#    restart: "unless-stopped"
-#    #    read_only: true
-#    env_file: ".env"
-#    command: "./bin/backend"
+  backend:
+    image: "docker.io/biow0lf/evemonk:v0.6.15"
+    container_name: "evemonk_backend"
+    restart: "unless-stopped"
+    # read_only: true
+    env_file: "./evemonk_backend/.env"
+    command: "./bin/backend"
 #    volumes:
 #      - "./evemonk/newrelic.yml:/app/config/newrelic.yml:ro"
 #      - "/srv/static/sde-20211022:/app/static:ro"
