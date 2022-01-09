@@ -61,12 +61,12 @@ services:
       - "postresql14_data:/var/lib/postgresql/data:rw"
       - "./evemonk_postgresql:/docker-entrypoint-initdb.d:ro"
 
-#  pghero:
-#    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
-#    container_name: "evemonk_pghero"
-#    restart: "unless-stopped"
-#    env_file: "./evemonk-pghero/.env"
-#    read_only: true
+  pghero:
+    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
+    container_name: "evemonk_pghero"
+    restart: "unless-stopped"
+    env_file: "./evemonk_pghero/.env"
+    read_only: true
 
 #  sidekiq-web-ui:
 #    image: "docker.io/biow0lf/evemonk-sidekiq:v1.0.54"
