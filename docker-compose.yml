@@ -18,8 +18,8 @@ services:
     image: "docker.io/library/nginx:1.20.2"
     container_name: "evemonk_pghero_nginx"
     restart: "unless-stopped"
-    volumes:
-      - "./evemonk-pghero-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+#    volumes:
+#      - "./evemonk-pghero-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
 
   https_portal:
     image: "docker.io/steveltn/https-portal:1.21.0"
@@ -61,7 +61,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
       - "postresql14_data:/var/lib/postgresql/data:rw"
-      - "./postgres:/docker-entrypoint-initdb.d:ro"
+      - "./evemonk_postgresql:/docker-entrypoint-initdb.d:ro"
 
 #  pghero:
 #    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
