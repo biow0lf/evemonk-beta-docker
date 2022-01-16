@@ -7,36 +7,36 @@ volumes:
   https_logs: {}
 
 services:
-#  backend_nginx:
-#    image: "docker.io/library/nginx:1.20.2"
-#    container_name: "evemonk_nginx"
-#    restart: "unless-stopped"
-#    volumes:
-#      - "./evemonk_nginx:/etc/nginx/conf.d:ro"
-#
-#  pghero_nginx:
-#    image: "docker.io/library/nginx:1.20.2"
-#    container_name: "evemonk_pghero_nginx"
-#    restart: "unless-stopped"
-#    volumes:
-#      - "./evemonk_pghero_nginx:/etc/nginx/conf.d:ro"
+  backend_nginx:
+    image: "docker.io/library/nginx:1.20.2"
+    container_name: "evemonk_backend_nginx"
+    restart: "unless-stopped"
+    volumes:
+      - "./evemonk_backend_nginx:/etc/nginx/conf.d:ro"
 
-#  https_portal:
-#    image: "docker.io/steveltn/https-portal:1.21.0"
-#    container_name: "evemonk_https_portal"
-#    restart: "unless-stopped"
-#    ports:
-#      - "80:80"
-#      - "443:443"
-#    volumes:
-#      - "https_portal:/var/lib/https-portal:rw"
-#      - "https_logs:/var/log/nginx:rw"
-#    environment:
-#      STAGE: "production"
-#      WEBSOCKET: "true"
-#      LISTEN_IPV6: "true"
-#      DOMAINS: "beta.evemonk.com -> http://backend_nginx,
-#                pghero-beta.evemonk.com -> http://pghero_nginx"
+  pghero_nginx:
+    image: "docker.io/library/nginx:1.20.2"
+    container_name: "evemonk_pghero_nginx"
+    restart: "unless-stopped"
+    volumes:
+      - "./evemonk_pghero_nginx:/etc/nginx/conf.d:ro"
+
+  https_portal:
+    image: "docker.io/steveltn/https-portal:1.21.0"
+    container_name: "evemonk_https_portal"
+    restart: "unless-stopped"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "https_portal:/var/lib/https-portal:rw"
+      - "https_logs:/var/log/nginx:rw"
+    environment:
+      STAGE: "production"
+      WEBSOCKET: "true"
+      LISTEN_IPV6: "true"
+      DOMAINS: "beta.evemonk.com -> http://backend_nginx,
+                pghero-beta.evemonk.com -> http://pghero_nginx"
 
   redis:
     image: "docker.io/library/redis:6.2.6"
@@ -62,12 +62,12 @@ services:
       - "postresql14_data:/var/lib/postgresql/data:rw"
       - "./evemonk_postgresql:/docker-entrypoint-initdb.d:ro"
 
-#  pghero:
-#    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
-#    container_name: "evemonk_pghero"
-#    restart: "unless-stopped"
-#    env_file: "./evemonk_pghero/.env"
-#    read_only: true
+  pghero:
+    image: "docker.io/biow0lf/evemonk-pghero:v1.0.54"
+    container_name: "evemonk_pghero"
+    restart: "unless-stopped"
+    env_file: "./evemonk_pghero/.env"
+    read_only: true
 
 #  sidekiq-web-ui:
 #    image: "docker.io/biow0lf/evemonk-sidekiq:v1.0.54"
@@ -83,16 +83,16 @@ services:
 #    env_file: "./evemonk-pg-extras/.env"
 #    read_only: true
 
-#  backend:
-#    image: "docker.io/biow0lf/evemonk:v0.6.15"
-#    container_name: "evemonk_backend"
-#    restart: "unless-stopped"
-#    # read_only: true
-#    env_file: "./evemonk_backend/.env"
-#    command: "./bin/backend"
-##    volumes:
-##      - "./evemonk/newrelic.yml:/app/config/newrelic.yml:ro"
-##      - "/srv/static/sde-20211022:/app/static:ro"
+  backend:
+    image: "docker.io/biow0lf/evemonk:v0.6.15"
+    container_name: "evemonk_backend"
+    restart: "unless-stopped"
+    # read_only: true
+    env_file: "./evemonk_backend/.env"
+    command: "./bin/backend"
+#    volumes:
+#      - "./evemonk/newrelic.yml:/app/config/newrelic.yml:ro"
+#      - "/srv/static/sde-20211022:/app/static:ro"
 
 #  sidekiq:
 #    image: "docker.io/biow0lf/evemonk:v0.6.12"
